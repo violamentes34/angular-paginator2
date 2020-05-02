@@ -23,27 +23,25 @@ export class TablePaginationExample implements OnInit {
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  columnas = [
+  columns = [
     { title: "Posicion", name: "position" },
     { title: "Nombre", name: "name" },
     { title: "Peso", name: "weight" },
     { title: "Simbolo", name: "symbol" }
   ];
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  searchKey: string;
+  
+  applyFilter() {
+    this.dataSource.filter = this.searchKey.trim().toLowerCase();
+  }
+
+  cleanSearch() {
+    this.searchKey = '';
+    this.applyFilter();
   }
 
   logData(row:Object) {
     console.log(row);
-  }
-
-  displayedColumns2: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource2 = new MatTableDataSource(ELEMENT_DATA);
-
-  applyFilter2(event: Event) {
-    const filterValue2 = (event.target as HTMLInputElement).value;
-    this.dataSource2.filter = filterValue2.trim().toLowerCase();
   }
 
 }
